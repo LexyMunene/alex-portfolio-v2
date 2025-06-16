@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ReactNode, HTMLAttributes } from "react";
+import { ReactNode } from "react";
 import { clsx } from "clsx";
+import { HTMLMotionProps } from "framer-motion";
 
-interface CardProps extends HTMLAttributes<HTMLDivElement> {
+interface CardProps extends HTMLMotionProps<"div"> {
   children: ReactNode;
   variant?: "default" | "glass" | "gradient" | "elevated";
   padding?: "none" | "sm" | "md" | "lg";
