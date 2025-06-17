@@ -5,9 +5,9 @@ import { Code, Database, Brain, Smartphone, Award, Users, Coffee, Heart } from "
 
 const stats = [
   { number: "15+", label: "Websites Built", icon: Code },
-  { number: "4+", label: "ML Models", icon: Brain },
-  { number: "3+", label: "Mobile Apps", icon: Smartphone },
-  { number: "2+", label: "Years Experience", icon: Award }
+  { number: "20+", label: "ML Models", icon: Brain },
+  { number: "20+", label: "Mobile Apps", icon: Smartphone },
+  { number: "3+", label: "Years Experience", icon: Award }
 ];
 
 const skills = [
