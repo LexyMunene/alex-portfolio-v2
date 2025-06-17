@@ -3,6 +3,14 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, Github, Linkedin, MessageCircle, X } from "lucide-react";
+import emailjs from '@emailjs/browser';
+
+// EmailJS Configuration
+const EMAILJS_CONFIG = {
+  SERVICE_ID: "service_h4rs3c9",        // Your Gmail service ID
+  TEMPLATE_ID: "template_u7na155",      // Your template ID
+  PUBLIC_KEY: "BUU1W22QWE3DYZUOR"         // Replace with your public key from EmailJS account settings
+};
 
 const contactInfo = [
   {
@@ -83,15 +91,34 @@ export function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: 'munenealex073@gmail.com'
+        },
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+
+      console.log('Email sent successfully:', result);
       setSubmitStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
       
-      // Reset status after 3 seconds
-      setTimeout(() => setSubmitStatus(""), 3000);
-    }, 2000);
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+      
+      // Reset status after 5 seconds
+      setTimeout(() => setSubmitStatus(""), 5000);
+    }
   };
 
   return (
@@ -208,13 +235,25 @@ export function Contact() {
             >
               <h3 className="text-2xl font-semibold text-white mb-6">Send a Message</h3>
               
+              {/* Success Message */}
               {submitStatus === "success" && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-6 p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400"
                 >
-                  Thank you! Your message has been sent successfully. I'll get back to you soon.
+                  ✅ Thank you! Your message has been sent successfully. I'll get back to you soon.
+                </motion.div>
+              )}
+
+              {/* Error Message */}
+              {submitStatus === "error" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 bg-red-500/20 border border-red-500/30 rounded-lg text-red-400"
+                >
+                  ❌ Failed to send message. Please try again or contact me directly at munenealex073@gmail.com
                 </motion.div>
               )}
 
@@ -287,8 +326,8 @@ export function Contact() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                   className="w-full px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (

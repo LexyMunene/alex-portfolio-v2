@@ -9,14 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "^14.2.8",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "typescript": "^5.5.4",
+    "@emailjs/browser": "^4.4.1",
+    "clsx": "^2.1.1",
     "framer-motion": "^11.5.4",
     "lucide-react": "^0.439.0",
+    "next": "^14.2.8",
     "next-themes": "^0.3.0",
-    "clsx": "^2.1.1"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.5.4"
   },
   "devDependencies": {
     "@types/node": "^20",
