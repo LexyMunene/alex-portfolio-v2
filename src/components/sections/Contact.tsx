@@ -7,7 +7,7 @@ import emailjs from '@emailjs/browser';
 
 // EmailJS Configuration
 const EMAILJS_CONFIG = {
-  SERVICE_ID: "service_h4rs3c9",        // Your Gmail service ID
+  SERVICE_ID: "service_t4ifl4a",        // Your Gmail service ID
   TEMPLATE_ID: "template_u7na155",      // Your template ID
   PUBLIC_KEY: "BUU1W22QWE3DYZUOR"         // Replace with your public key from EmailJS account settings
 };
