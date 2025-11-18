@@ -7,10 +7,13 @@ import emailjs from '@emailjs/browser';
 
 // EmailJS Configuration
 const EMAILJS_CONFIG = {
-  SERVICE_ID: "service_t4ifl4a",        // Your Gmail service ID
-  TEMPLATE_ID: "template_u7na155",      // Your template ID
-  PUBLIC_KEY: "BUU1W22QWE3DYZUOR"         // Replace with your public key from EmailJS account settings
+  SERVICE_ID: "service_t4ifl4a",
+  TEMPLATE_ID: "template_u7na155",
+  PUBLIC_KEY: "BUU1W22QWE3DYZUOR"
 };
+
+// Initialize EmailJS
+emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
 
 const contactInfo = [
   {
@@ -92,7 +95,7 @@ export function Contact() {
     setIsSubmitting(true);
     
     try {
-      // Send email using EmailJS
+      // Send email using EmailJS directly (browser-based)
       const result = await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
         EMAILJS_CONFIG.TEMPLATE_ID,
@@ -101,7 +104,10 @@ export function Contact() {
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
-          to_email: 'munenealex073@gmail.com'
+          to_email: 'munenealex073@gmail.com',
+          sender_name: formData.name,
+          sender_email: formData.email,
+          reply_to_email: formData.email,
         },
         EMAILJS_CONFIG.PUBLIC_KEY
       );

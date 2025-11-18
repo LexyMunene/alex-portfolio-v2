@@ -102,7 +102,7 @@ export function About() {
                   </p>
                   <p>
                     From developing a machine learning model that identifies guitar chords to 
-                    analyzing business trends, I've always been driven by the 
+                    analyzing business trends at Deloitte, I've always been driven by the 
                     challenge of turning complex problems into elegant solutions.
                   </p>
                   <p>
